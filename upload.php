@@ -1,5 +1,6 @@
 <?php
-$target_dir = "/fileuploads";
+$target_dir = "project1/fileuploads/";
+echo "target dir is " $target_dir;
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 //$uploadOk = 1;
 $FileType = pathinfo($target_file,PATHINFO_EXTENSION);
