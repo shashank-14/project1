@@ -17,7 +17,8 @@ spl_autoload_register(array('Manage', 'autoload'));
 
 //instantiate the program object
 
-/*function uploadFile(){
+Class uploads{
+ static public function uploadFile(){
 $target_dir = "filesuploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["tmp_name"]);
 $fileName=$_FILES["fileToUpload"]["name"];
@@ -41,7 +42,8 @@ if(isset($_POST["submit"])) {
         }
    
 }
-}*/
+}
+}
 
 
 $obj = new main();
@@ -122,7 +124,7 @@ class homepage extends page
     }
 
     public function post() {
-        $target_dir = "filesuploads/";
+        /*$target_dir = "filesuploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["tmp_name"]);
         $fileName=$_FILES["fileToUpload"]["name"];
         $FileType = pathinfo($fileName,PATHINFO_EXTENSION);
@@ -145,7 +147,8 @@ class homepage extends page
                 }
            
         }
-            }
+            }*/
+            uploads::uploadFile();
 }
 
 class displayTable extends page {
