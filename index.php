@@ -8,7 +8,6 @@ error_reporting(E_ALL);
 //To load display.php to display contents
 class Manage {
     public static function autoload($class) {
-        //to 
         include 'index.php';
     }
 }
@@ -18,7 +17,7 @@ spl_autoload_register(array('Manage', 'autoload'));
 //instantiate the program object
 
 Class uploads{
- static public function uploadFile(){
+ static public function uploadFile(){                                                    //to move file into target directory
 $target_dir = "filesuploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["tmp_name"]);
 $fileName=$_FILES["fileToUpload"]["name"];
@@ -33,16 +32,16 @@ if(isset($_POST["submit"])) {
      }
      else{
        $text= 'File already exists';
-       display::printThis($text);
+       display::printThis($text);                                                        //to display the message
      }
    }
    else{
      $text= 'Upload csv File';
-     display::printThis($text);
+     display::printThis($text);                                                          //to display the message
         }
    
-}
-}
+    }
+  }
 }
 
 
@@ -109,46 +108,19 @@ class homepage extends page
         $form='';
         $form .='<center>';
         $form .= '<form action="index.php?page=homepage" method="post" enctype="multipart/form-data">';
-        //echo $form;
         $form .='<h3>Upload CSV File</h3><br>';
         $form .= '<input type="file" name="fileToUpload" id="fileToUpload"><br><br>';
-        //echo $form;
         $form .= '<input type="submit" value="Upload CSV file" name="submit"></center>';
-        //echo $form;
         $form .= '</form> ';
-        //echo $form;
-        display::printThis($form);
-        $this->html .= '<h1>Upload Form</h1>';
-        $this->html .= $form;
+        display::printThis($form);                                                        //display form
+        
 
     }
 
     public function post() {
-        /*$target_dir = "filesuploads/";
-        $target_file = $target_dir . basename($_FILES["fileToUpload"]["tmp_name"]);
-        $fileName=$_FILES["fileToUpload"]["name"];
-        $FileType = pathinfo($fileName,PATHINFO_EXTENSION);
-        //checking file type
-        if(isset($_POST["submit"])) {
-           if($FileType=="csv"){                                                                                                              
-             //checking existance of file
-             if(!file_exists("filesuploads/".$_FILES["fileToUpload"]["name"])){                                                              
-               move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], 'filesuploads/' . $_FILES["fileToUpload"]["name"]);
-               header("Location: http://web.njit.edu/~sp2339/project1/index.php?page=displayTable&filename=".$_FILES["fileToUpload"]["name"]);
-             }
-             else{
-               $text= 'File already exists';
-               display::printThis($text);
-             }
-           }
-           else{
-             $text= 'Upload csv File';
-             display::printThis($text);
-                }
-           
-        }
-            }*/
-            uploads::uploadFile();
+        uploads::uploadFile();
+            }
+            
 }
 
 class displayTable extends page {
@@ -184,7 +156,7 @@ if (($handle = fopen("filesuploads/".$csvFile, "r")) !== FALSE) {
             }else{
                 $form .= '<td>'.$value.'</td>';
             }
-        }
+          }
         
         if ($row == 1) {
             $form .= '</tr></thead><tbody>';
@@ -192,13 +164,13 @@ if (($handle = fopen("filesuploads/".$csvFile, "r")) !== FALSE) {
             $form .= '</tr>';
         }
         $row++;
-    }
+      }
     
     $form .= '</tbody></table>';
-    display::printThis($form);
-    fclose($handle);
-}
-}
+    display::printThis($form);                                                          //to print table
+    fclose($handle);                                                                    //closing opened file
+    }
+  }
 }
 
 class display{
